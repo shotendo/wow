@@ -9,14 +9,6 @@ RUN apt-get clean
 
 #RUN mkdir -p /vnc/.local/share/data/qBittorrent
 RUN mkdir -p /wow/src
-
-
-Run cd /wow/src
-Run git clone -b 3.3.5 git://github.com/TrinityCore/TrinityCore.git
-
-RUN cd TrinityCore
-RUN mkdir build
-RUN cd build
-RUN cmake ../ -DCMAKE_INSTALL_PREFIX=/wow
-RUN make
-RUN make install
+ADD build.sh /wow/build.sh
+RUN chmod +x /wow/build.sh
+RUN /wow/build.sh
